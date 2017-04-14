@@ -168,43 +168,56 @@ public class GameActivity extends AppCompatActivity {
 
         ImageView imageView = (ImageView) findViewById(R.id.imageView2);
 
-        if (mFailCounter == 1) {
-            imageView.setImageResource(R.drawable.android1);
-        } else if (mFailCounter == 2) {
-            imageView.setImageResource(R.drawable.android2);
-        } else if (mFailCounter == 3) {
-            imageView.setImageResource(R.drawable.android3);
-        } else if (mFailCounter == 4) {
-            imageView.setImageResource(R.drawable.android4);
-        } else if (mFailCounter == 5) {
-            imageView.setImageResource(R.drawable.android5);
-        } else if (mFailCounter == 6) {
-            imageView.setImageResource(R.drawable.android6);
-        } else if (mFailCounter == 7) {
-            imageView.setImageResource(R.drawable.android7);
-        } else if (mFailCounter == 8 & mPoints !=0) {
+        switch (mFailCounter){
+            case 1:
+                imageView.setImageResource(R.drawable.android1);
+                break;
+            case 2:
+                imageView.setImageResource(R.drawable.android2);
+                break;
+            case 3:
+                imageView.setImageResource(R.drawable.android3);
+                break;
+            case 4:
+                imageView.setImageResource(R.drawable.android4);
+                break;
+            case 5:
+                imageView.setImageResource(R.drawable.android5);
+                break;
+            case 6:
+                imageView.setImageResource(R.drawable.android6);
+                break;
+            case 7:
+                imageView.setImageResource(R.drawable.android7);
+                break;
+            case 8:
+                if(mPoints!=0){
 
-            Toast.makeText(this, "The right word was " + mWord.toUpperCase(), Toast.LENGTH_LONG).show();
+                    Toast.makeText(this, "The right word was " + mWord.toUpperCase(), Toast.LENGTH_LONG).show();
 
-            Intent gameOverIntent = new Intent(this, GameOverActivity.class);
+                    Intent gameOverIntent = new Intent(this, GameOverActivity.class);
 
-            gameOverIntent.putExtra("POINTS_IDENTIFIER", mPoints);
+                    gameOverIntent.putExtra("POINTS_IDENTIFIER", mPoints);
 
-            startActivity(gameOverIntent);
+                    startActivity(gameOverIntent);
 
-            finish();
+                    finish();
+                }else if(mPoints==0){
 
-        }else if(mFailCounter == 8 & mPoints == 0){
+                    Toast.makeText(this, "The right word was " + mWord.toUpperCase(), Toast.LENGTH_LONG).show();
 
-            Toast.makeText(this, "The right word was " + mWord.toUpperCase(), Toast.LENGTH_LONG).show();
+                    Intent mainActivityIntent = new Intent(this, MainActivity.class);
 
-            Intent mainActivityIntent = new Intent(this, MainActivity.class);
+                    //gameOverIntent.putExtra("POINTS_IDENTIFIER", mPoints);
 
-            //gameOverIntent.putExtra("POINTS_IDENTIFIER", mPoints);
+                    startActivity(mainActivityIntent);
 
-            startActivity(mainActivityIntent);
+                    finish();
+                }
 
-            finish();
+
+                break;
+
         }
 
 
