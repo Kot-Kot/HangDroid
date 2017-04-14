@@ -14,14 +14,14 @@
         tools:layout_editor_absoluteY="8dp">
 
         <Button
-            android:id="@+id/button2"
+            android:id="@+id/buttonPlay"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:layout_below="@+id/editTextWord"
             android:layout_centerHorizontal="true"
-            android:onClick="startMultiGame"
-
             android:background="@drawable/roundbuttonshape"
+
+            android:onClick="startMultiGame"
             android:text="Play"
             android:textColor="#000000"
             tools:layout_editor_absoluteX="0dp"

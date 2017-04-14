@@ -5,13 +5,14 @@ import android.os.Bundle;
 import android.support.v7.app.AppCompatActivity;
 import android.util.Log;
 import android.view.View;
+import android.widget.Button;
 import android.widget.EditText;
 import android.widget.ImageView;
 import android.widget.LinearLayout;
 import android.widget.TextView;
 import android.widget.Toast;
 
-public class GameMultiActivity extends AppCompatActivity {
+public class GameMultiActivity extends AppCompatActivity implements View.OnClickListener {
 
     String mWord;
     int mFailCounter = 0;
@@ -27,12 +28,29 @@ public class GameMultiActivity extends AppCompatActivity {
         String wordSent = getIntent().getStringExtra("Word_Identifier");
         mWord = wordSent;
         createTextViews(wordSent);
+        Button myButtonCheckLetter = (Button)findViewById(R.id.buttonCheckLetter);
+        myButtonCheckLetter.setOnClickListener((View.OnClickListener) this);
 
     }
 
+    @Override
+    public void onClick(View v) {
+        switch (v.getId()){
+            case     R.id.buttonCheckLetter:
+                EditText myEditText = (EditText) findViewById(R.id.editTextLetter);
+                String letter = myEditText.getText().toString();
+                myEditText.setText("");
 
-
-
+                Log.d("MYLOG","The letter is" + letter);
+                if (letter.length() > 0){
+                    checkLetter(letter.toUpperCase());
+                } else {
+                    Toast.makeText(this,"Please introduce letter", Toast.LENGTH_SHORT).show();
+                }
+                break;
+        }
+    }
+/*
     public void introduceLetter(View v){
         EditText myEditText = (EditText) findViewById(R.id.editTextLetter);
         String letter = myEditText.getText().toString();
@@ -45,6 +63,7 @@ public class GameMultiActivity extends AppCompatActivity {
             Toast.makeText(this,"Please introduce letter", Toast.LENGTH_SHORT).show();
         }
     }
+    */
     public void checkLetter(String introducedLetter){
 
         char charIntroduced = introducedLetter.toUpperCase().charAt(0);
